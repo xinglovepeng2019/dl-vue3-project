@@ -32,7 +32,7 @@ export default {
     let pageSize = ref(10)
     // 总数量
     let total = ref(0)
-    const tableData = ref('')
+    const tableData = ref([])
     const getSupplierlist = async () => {
       let {
         msg: { rows, count },
