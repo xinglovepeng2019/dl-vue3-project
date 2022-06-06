@@ -1,15 +1,21 @@
 import axios from 'axios'
+import Message from '@/components/library/Message'
+import store from '@/store'
 
 // 导出基地址， 其它地方不是通过axios发请求的地方用上基地址
-export const baseURL = 'http://2105b.9yuecloud.com/pro-api'
+// export const baseURL = 'http://2105b.9yuecloud.com/pro-api'
 const instance = axios.create({
-  baseURL,
+  baseURL:process.env.VUE_APP_BASE_API,   //'/api'
   timeout:5000
 })
 
 // 添加请求拦截器
-instance.interceptors.request.use(function (config) {
+instance.interceptors.request.use((config)=> {
   // 在发送请求之前做些什么
+  const { userInfo } = store.state.user
+  if (userInfo.token.length > 0) {
+    config.headers.Authorization='Bearer '+userInfo.token
+  }
   return config;
 }, function (error) {
   // 对请求错误做些什么
@@ -17,10 +23,15 @@ instance.interceptors.request.use(function (config) {
 });
 
 // 添加响应拦截器
-instance.interceptors.response.use(function (response) {
+instance.interceptors.response.use((res)=> {
   // 对响应数据做点什么
-  return response;
-}, function (error) {
+  // console.log(res)
+  // if (res.data.code != 1) {
+  //   Message({ type: "error", text: res.data.message })
+  //   return Promise.reject(res.data)
+  // }
+  return res.data;
+},  (error) =>{
   // 对响应错误做点什么
   return Promise.reject(error);
 });

@@ -1,5 +1,5 @@
 // 实现使用函数调用 xtx-message组件
-import { def } from "@vue/shared";
+
 import { createVNode, render } from "vue";
 import xtxMessage from './xtx-message.vue'
 

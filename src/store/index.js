@@ -12,18 +12,6 @@ import category from './modules/category'
 
 // 创建vuex仓库并导出
 export default createStore({
-  state: {
-  
-  },
-  getters: {
-   
-  },
-  mutations: {
-    
-  },
-  actions: {
-    
-  },
   modules: {
     user,
     category

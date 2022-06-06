@@ -3,16 +3,15 @@ export default {
   namespaced: true,
   state () {
     return {
-      userinfo: {
-        id: "",
-        nickname: "",
+      userInfo: {
+        username: "",
         token:""
-      }
+       }
     }
   },
   mutations: {
-    setUser (state, payload) {
-      state.userinfo=payload
+    setUserInfo (state, payload) {
+      state.userInfo=payload
     }
   }
 }

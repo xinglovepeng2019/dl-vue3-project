@@ -1,6 +1,11 @@
 <template>
   <div class="form">
-    <Form :validation-schema="scheam" autocomplete="off" v-slot="{ errors }">
+    <Form
+      :validation-schema="scheam"
+      ref="loginRef"
+      autocomplete="off"
+      v-slot="{ errors }"
+    >
       <div class="form-item">
         <div class="input">
           <i class="iconfont icon-user"></i>
@@ -32,7 +37,7 @@
         </div>
       </div>
       <div class="form-item">
-        <el-button type="primary">登录</el-button>
+        <el-button type="primary" @click="loginFn">登录</el-button>
       </div>
     </Form>
   </div>
@@ -40,26 +45,17 @@
 
 <script>
 import { Field, Form } from 'vee-validate'
-import schema from '@/utils/vee-validate-schema'
-import { reactive } from 'vue'
+import useLogin from './login.js'
 export default {
   components: {
     Field,
     Form,
   },
   setup() {
-    // 表单对象数据
-    const form = reactive({
-      username: '',
-      password: '',
-    })
-    // 校验规则对象
-    const mySchema = {
-      username: schema.username,
-      password: schema.password,
-    }
+    // 登录
+    const { form, scheam, loginRef, loginFn } = useLogin()
 
-    return { form, scheam: mySchema }
+    return { form, scheam, loginRef, loginFn }
   },
 }
 </script>

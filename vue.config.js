@@ -10,5 +10,18 @@ module.exports = defineConfig({
         path.join(__dirname,'./src/assets/styles/variables.less')
       ]
     }
+  },
+  devServer: {
+    // 配置跨域
+    proxy: {
+      [process.env.VUE_APP_BASE_API]: {
+        target: process.env.VUE_APP_SERVICE_URL,
+        changeOrigin: true,
+        // 地址重写
+        pathRewrite: {
+          ["^"+process.env.VUE_APP_BASE_API]:""
+        }
+      }
+    }
   }
 })

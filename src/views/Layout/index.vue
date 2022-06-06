@@ -3,18 +3,21 @@
     <el-container>
       <el-header>星空管理系统</el-header>
       <el-container>
-        <el-aside width="200px">Aside</el-aside>
+        <el-aside width="200px">
+          <aside-item></aside-item>
+        </el-aside>
         <el-main>
           <!-- <xtx-message :type="success" text="成功"></xtx-message> -->
+          <router-view></router-view>
         </el-main>
       </el-container>
     </el-container>
   </div>
 </template>
 <script>
-import xtxMessage from '@/components/library/xtx-message.vue'
+import AsideItem from './components/asideItem.vue'
 export default {
-  components: { xtxMessage },
+  components: { AsideItem },
   name: 'xk-layout',
 }
 </script>
@@ -30,7 +33,7 @@ export default {
     }
 
     .el-aside {
-      background-color: #d3dce6;
+      background-color: #222832;
       color: #333;
     }
 
